@@ -33,7 +33,8 @@ RUN mkdir /var/www/htdocs && cd /var/www/htdocs/ && git clone https://github.com
 
 COPY assets/ssmtp.conf /etc/ssmtp/ssmtp.conf
 COPY assets/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY run.sh /run.sh
 
 EXPOSE 80
-CMD ["/usr/bin/supervisord"]
+CMD ["/run.sh"]
 
