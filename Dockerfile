@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
         ssmtp \
         mailutils \
 	git \
+	mysql-client \
 	&& apt-get clean
 
 RUN echo 'date.timezone = "Europe/Berlin"' >> /etc/php5/cli/php.ini
@@ -31,9 +32,12 @@ RUN a2enmod rewrite
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 RUN mkdir /var/www/htdocs && cd /var/www/htdocs/ && git clone https://github.com/obi12341/passbin_flow.git . && /usr/local/bin/composer install
 
+COPY assets/Settings.yaml /var/www/htdocs/Configuration/Production/
 COPY assets/ssmtp.conf /etc/ssmtp/ssmtp.conf
 COPY assets/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY run.sh /run.sh
+COPY assets/run.sh /run.sh
+
+RUN chmod +x /run.sh
 
 EXPOSE 80
 CMD ["/run.sh"]
