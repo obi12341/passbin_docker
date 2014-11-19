@@ -1,0 +1,8 @@
+TYPO3:
+  Flow:
+    persistence:
+      backendOptions:
+        dbname: '{{MYSQL_DB}}'
+        user: '{{MYSQL_USER}}'
+        password: '{{MYSQL_PASSWORD}}'
+        port: '{{MYSQL_PORT}}'
