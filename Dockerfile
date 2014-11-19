@@ -29,7 +29,7 @@ RUN a2ensite vhost
 RUN a2enmod rewrite
 
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
-RUN cd /var/www/html/ && git clone https://github.com/obi12341/passbin_package.git . && /usr/local/bin/composer install
+RUN mkdir /var/www/htdocs && cd /var/www/htdocs/ && git clone https://github.com/obi12341/passbin_flow.git . && /usr/local/bin/composer install
 
 COPY assets/ssmtp.conf /etc/ssmtp/ssmtp.conf
 COPY assets/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
